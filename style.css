@@ -1,0 +1,259 @@
+/* CONFIGURAÇÃO DE CORES */
+:root {
+    --verde-vijo: #39A935;
+    --azul-vijo: #1A65B1;
+    --amarelo-meli: #FFF159;
+    --texto-escuro: #2C3E50;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* FUNDO ANIMADO COM ONDAS DE CORES (VERDE E AMARELO) */
+body {
+    background: linear-gradient(135deg, #39A935, #FFF159, #2b8228, #e5d64b);
+    background-size: 400% 400%;
+    animation: ondasDeCor 12s ease infinite;
+    color: var(--texto-escuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Animação que faz o degradê se mover como ondas fluídas */
+@keyframes ondasDeCor {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* CARD CENTRAL RESPONSIVO */
+.container {
+    text-align: center;
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 20px;
+    max-width: 450px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Borda contornada animada do card */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg, var(--verde-vijo), var(--azul-vijo), var(--amarelo-meli), var(--verde-vijo));
+    background-size: 400% 400%;
+    z-index: -1;
+    border-radius: 24px;
+    animation: gradientBorder 8s ease infinite;
+}
+
+@keyframes gradientBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* LOGO ADAPTÁVEL NO TOPO */
+.logo-box {
+    margin-bottom: 25px;
+}
+
+.logo-box img {
+    max-width: 40%;
+    width: 180px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* TEXTOS */
+h1 {
+    font-size: 1.4rem;
+    color: var(--azul-vijo);
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+/* ÍCONE DE VERIFICAÇÃO */
+.success-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.checkmark-circle {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 50%;
+    border: 4px solid var(--verde-vijo);
+    background-color: #fff;
+}
+
+.checkmark.draw:after {
+    animation-duration: 1000ms;
+    animation-timing-function: ease;
+    animation-name: checkmark;
+    transform: scaleX(-1) rotate(135deg);
+}
+
+.checkmark:after {
+    opacity: 1;
+    height: 30px;
+    width: 15px;
+    transform-origin: left top;
+    border-right: 4px solid var(--verde-vijo);
+    border-top: 4px solid var(--verde-vijo);
+    content: '';
+    left: 7px;
+    top: 29px;
+    position: absolute;
+}
+
+@keyframes checkmark {
+    0% { height: 0; width: 0; opacity: 1; }
+    20% { height: 0; width: 15px; opacity: 1; }
+    40% { height: 30px; width: 15px; opacity: 1; }
+    100% { height: 30px; width: 15px; opacity: 1; }
+}
+
+/* IMAGEM DO PRODUTO (NOVIDADE) */
+.product-box {
+    margin-bottom: 25px;
+}
+
+.product-img {
+    max-width: 50%;
+    height: auto;
+    
+    /* REMOVIDOS: border-radius, box-shadow e border */
+    
+    /* ADICIONADO: drop-shadow que acompanha o recorte do PNG */
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.15));
+    
+    transition: transform 0.3s ease;
+}
+
+.product-img:hover {
+    transform: scale(1.03);
+}
+
+/* BOTÃO OTIMIZADO PARA CLIQUES */
+.btn-Meli {
+    display: inline-block;
+    width: 100%;
+    padding: 16px 20px;
+    background-color: var(--amarelo-meli);
+    color: #333333;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.05rem;
+    border-radius: 10px;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-Meli:hover {
+    background-color: #e6d950;
+    transform: translateY(-2px);
+}
+
+.btn-Meli:active {
+    transform: translateY(0);
+}
+
+.footer-text {
+    margin-top: 25px;
+    font-size: 0.75rem;
+    color: #aaa;
+}
+/* =========================================
+   MEDIA QUERIES: RESPONSIVIDADE PARA MOBILE 
+   ========================================= */
+
+/* Para celulares e tablets (telas menores que 768px) */
+@media (max-width: 768px) {
+    .container {
+        /* Reduz o preenchimento interno para aproveitar melhor o espaço da tela */
+        padding: 30px 20px; 
+        /* Garante que o card não encoste totalmente nas bordas do celular */
+        width: 95%; 
+    }
+
+    .logo-box img {
+        width: 150px; /* Diminui a logo levemente */
+    }
+
+    h1 {
+        font-size: 1.25rem; /* Ajusta o título para não quebrar em muitas linhas */
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+    
+    .product-img {
+        max-width: 90%; /* Deixa a imagem do produto proporcional */
+    }
+}
+
+/* Para celulares com telas bem pequenas (menores que 400px) */
+@media (max-width: 400px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 25px 15px;
+    }
+    
+    h1 {
+        font-size: 1.15rem;
+    }
+    
+    p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+    
+    .btn-Meli {
+        padding: 14px 15px;
+        font-size: 0.9rem; /* Texto do botão menor para caber em uma linha */
+    }
+    
+    .checkmark-circle {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .checkmark:after {
+        height: 25px;
+        width: 12px;
+        left: 10px;
+        top: 22px;
+    }
+}
